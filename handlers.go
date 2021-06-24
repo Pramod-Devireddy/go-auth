@@ -4,7 +4,7 @@
  * Created Date : Thursday, Jun 24th 2021, 4:43:41 AM
  * Author       : Pramod Devireddy
  *
- * Last Modified: Thursday, 24th June 2021 6:29:06 am
+ * Last Modified: Thursday, 24th June 2021 8:07:21 am
  * Modified By  : Pramod Devireddy
  *
  * Copyright (c)2021 - Pramod Devireddy
@@ -37,6 +37,10 @@ type credentials struct {
 type Claims struct {
 	Username string `json:"username"`
 	jwt.StandardClaims
+}
+
+type jwtToken struct {
+	Token string `json:"token"`
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -75,6 +79,14 @@ func login(w http.ResponseWriter, r *http.Request) {
 		Value:   tokenString,
 		Expires: expirationTime,
 	})
+
+	result := &jwtToken{
+		Token: tokenString,
+	}
+
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	json.NewEncoder(w).Encode(result)
+
 }
 
 func home(w http.ResponseWriter, r *http.Request) {
