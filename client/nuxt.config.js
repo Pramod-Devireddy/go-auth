@@ -99,9 +99,13 @@ export default {
         },
         endpoints: {
           login: { url: 'http://localhost:8080/login', method: 'post' },
+          logout: false,
           user: false
         }
       }
+    },
+    redirect: {
+      logout: '/login'
     }
   }
 }

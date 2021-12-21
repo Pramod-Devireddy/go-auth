@@ -1,6 +1,13 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+  <v-row
+    justify="center"
+    align="center"
+  >
+    <v-col
+      cols="12"
+      sm="8"
+      md="6"
+    >
       <div class="text-center">
         <logo />
         <vuetify-logo />
@@ -73,6 +80,11 @@
         </v-card-actions>
       </v-card>
     </v-col>
+    <v-col>
+      <v-btn @click="logout()">
+        Logout
+      </v-btn>
+    </v-col>
   </v-row>
 </template>
 
@@ -87,7 +99,6 @@ export default {
   },
   methods: {
     logout () {
-      this.$toast.show('Logging out...', { icon: 'fingerprint' })
       this.$auth.logout()
     }
   }
